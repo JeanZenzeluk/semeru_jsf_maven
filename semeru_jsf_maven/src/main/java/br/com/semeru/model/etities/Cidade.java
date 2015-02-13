@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -14,32 +15,28 @@ import org.hibernate.annotations.ForeignKey;
 @Table(name="cidade")
 public class Cidade implements Serializable{
     
+    private static final long serialVersionUID =  1L; 
+    
     @Id
     @GeneratedValue
     @Column(name="IdCidade", nullable=false)
-    private Integer id;
-    
-    @Column(name="nome", nullable=false, length=80)
+    private Integer idCidade;
+    @Column(name="Nome", length=80, nullable=false)
     private String nome;
 
-    @OneToMany
-    @ForeignKey(name="CidadeEndereco")
+    @OneToMany(mappedBy = "cidade", fetch = FetchType.LAZY)
+    @ForeignKey(name="EnderecoCidade")
     private List<Endereco> enderecos;
     
     public Cidade() {
     }
 
-    public Cidade(Integer id, String nome) {
-        this.id = id;
-        this.nome = nome;
+    public Integer getIdCidade() {
+        return idCidade;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdCidade(Integer idCidade) {
+        this.idCidade = idCidade;
     }
 
     public String getNome() {
@@ -50,10 +47,18 @@ public class Cidade implements Serializable{
         this.nome = nome;
     }
 
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + (this.id != null ? this.id.hashCode() : 0);
+        int hash = 7;
+        hash = 89 * hash + (this.idCidade != null ? this.idCidade.hashCode() : 0);
         return hash;
     }
 
@@ -66,7 +71,7 @@ public class Cidade implements Serializable{
             return false;
         }
         final Cidade other = (Cidade) obj;
-        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+        if (this.idCidade != other.idCidade && (this.idCidade == null || !this.idCidade.equals(other.idCidade))) {
             return false;
         }
         return true;

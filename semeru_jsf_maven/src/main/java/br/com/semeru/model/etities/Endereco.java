@@ -41,7 +41,7 @@ public class Endereco implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @ForeignKey(name="EnderecoTipoLogradouro")
     @JoinColumn(name = "IdTipoLogradouro", referencedColumnName = "IdTipoLogradouro")
-    private TipoLogradouro tipoLogradouro;
+    private TipoLogradouro tipologradouro;
     
     @ManyToOne(optional=false, fetch = FetchType.LAZY)
     @ForeignKey(name="EnderecoEstado")
@@ -51,7 +51,7 @@ public class Endereco implements Serializable {
     @ManyToOne(optional=false, fetch = FetchType.LAZY)
     @ForeignKey(name="EnderecoTipoEndereco")
     @JoinColumn(name = "IdTipoEndereco", referencedColumnName="IdTipoEndereco")
-    private TipoEndereco tipoEndereco;
+    private TipoEndereco tipoendereco;
     
     @ManyToOne(optional=false, fetch = FetchType.LAZY)
     @ForeignKey(name="EnderecoCidade")
@@ -61,8 +61,8 @@ public class Endereco implements Serializable {
     public Endereco() {
         this.cidade = new Cidade();
         this.estado = new Estado();
-        this.tipoLogradouro = new TipoLogradouro();
-        this.tipoEndereco = new TipoEndereco();
+        this.tipologradouro = new TipoLogradouro();
+        this.tipoendereco = new TipoEndereco();
         this.pessoa = new Pessoa();
     }    
     
@@ -130,20 +130,20 @@ public class Endereco implements Serializable {
         this.estado = estado;
     }
 
-    public TipoEndereco getTipoEndereco() {
-        return tipoEndereco;
+    public TipoEndereco getTipoendereco() {
+        return tipoendereco;
     }
 
-    public void setTipoEndereco(TipoEndereco tipoendereco) {
-        this.tipoEndereco = tipoendereco;
+    public void setTipoendereco(TipoEndereco tipoendereco) {
+        this.tipoendereco = tipoendereco;
     }
 
-    public TipoLogradouro getTipoLogradouro() {
-        return tipoLogradouro;
+    public TipoLogradouro getTipologradouro() {
+        return tipologradouro;
     }
 
-    public void setTipoLogradouro(TipoLogradouro tipologradouro) {
-        this.tipoLogradouro = tipologradouro;
+    public void setTipologradouro(TipoLogradouro tipologradouro) {
+        this.tipologradouro = tipologradouro;
     }
 
     public Cidade getCidade() {

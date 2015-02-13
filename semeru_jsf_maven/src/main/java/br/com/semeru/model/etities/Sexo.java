@@ -15,26 +15,20 @@ import org.hibernate.annotations.ForeignKey;
 @Table(name="sexo")
 public class Sexo implements Serializable {
     
-    private static final Long serialVersionUID = 1L;
+    private static final long serialVersionUID =  1L;   
     
     @Id
     @GeneratedValue
-    @Column(name="IdSexo", nullable=false)
+    @Column(name="IdSexo",nullable=false)
     private Integer idSexo;
-    
-    @Column(name="Descricao", nullable=false, length=9)
+    @Column(name="Descricao", unique=true, nullable=false, length=9)
     private String descricao;
-    
-    @OneToMany(mappedBy="sexo", fetch= FetchType.LAZY)
-    @ForeignKey(name="PessoaSexo")
+
+    @OneToMany(mappedBy = "sexo", fetch = FetchType.LAZY)
+    @ForeignKey(name = "PessoaSexo")        
     private List<Pessoa> pessoas;
-
+    
     public Sexo() {
-    }
-
-    public Sexo(Integer idSexo, String descricao) {
-        this.idSexo = idSexo;
-        this.descricao = descricao;
     }
 
     public Integer getIdSexo() {
@@ -60,7 +54,7 @@ public class Sexo implements Serializable {
     public void setPessoas(List<Pessoa> pessoas) {
         this.pessoas = pessoas;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;
