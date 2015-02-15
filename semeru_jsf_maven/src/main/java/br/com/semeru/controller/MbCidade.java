@@ -39,11 +39,11 @@ public class MbCidade implements Serializable {
         }else{
             updateCidade();
         }
-        limpaCidade();
+        limpCidade();
         return null;
     }
 
-    public String limpaCidade(){
+    public String limpCidade(){
         cidade = new Cidade();
         return "/restrict/cadastrarCidade.faces";
     }
